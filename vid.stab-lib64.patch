@@ -1,0 +1,24 @@
+--- georgmartius-vid.stab-254ee37/src/CMakeLists.txt.orig	2013-07-17 20:19:09.407528014 +0200
++++ georgmartius-vid.stab-254ee37/src/CMakeLists.txt	2013-07-17 20:20:30.567769363 +0200
+@@ -64,8 +64,8 @@
+ 
+ INSTALL(TARGETS vidstab
+   RUNTIME DESTINATION bin
+-  LIBRARY DESTINATION lib
+-  ARCHIVE DESTINATION lib
++  LIBRARY DESTINATION lib${LIB_SUFFIX}
++  ARCHIVE DESTINATION lib${LIB_SUFFIX}
+ )
+ 
+ include(create_pkgconfig_file)
+--- georgmartius-vid.stab-254ee37/CMakeModules/create_pkgconfig_file.cmake.orig	2013-07-17 20:21:13.279651489 +0200
++++ georgmartius-vid.stab-254ee37/CMakeModules/create_pkgconfig_file.cmake	2013-07-17 20:22:37.080004665 +0200
+@@ -21,5 +21,5 @@
+ 
+ ")
+ 
+-    install(FILES ${_pkgfname} DESTINATION lib/pkgconfig)
+-endmacro()
+\ No newline at end of file
++    install(FILES ${_pkgfname} DESTINATION lib${LIB_SUFFIX}/pkgconfig)
++endmacro()

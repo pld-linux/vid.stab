@@ -16,8 +16,10 @@ Group:		Libraries
 Source0:	https://github.com/georgmartius/vid.stab/tarball/release-%{version}?/%{name}-%{version}.tar.gz
 # Source0-md5:	3dda75371b71e0e695cb1f679691c23c
 Patch0:		%{name}-git.patch
+Patch1:		%{name}-lib64.patch
 URL:		http://public.hronopik.de/vid.stab/
 BuildRequires:	cmake >= 2.6
+BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -41,6 +43,7 @@ Pliki nagłówkowe biblioteki vid.stab.
 %prep
 %setup -q -n georgmartius-%{name}-254ee37
 %patch0 -p1
+%patch1 -p1
 
 %build
 cd src
