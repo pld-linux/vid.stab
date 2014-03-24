@@ -1,5 +1,5 @@
---- georgmartius-vid.stab-254ee37/src/CMakeLists.txt.orig	2013-07-17 20:19:09.407528014 +0200
-+++ georgmartius-vid.stab-254ee37/src/CMakeLists.txt	2013-07-17 20:20:30.567769363 +0200
+--- georgmartius-vid.stab-254ee37/CMakeLists.txt.orig	2013-07-17 20:19:09.407528014 +0200
++++ georgmartius-vid.stab-254ee37/CMakeLists.txt	2013-07-17 20:20:30.567769363 +0200
 @@ -64,8 +64,8 @@
  
  INSTALL(TARGETS vidstab

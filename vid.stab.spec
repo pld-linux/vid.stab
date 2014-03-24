@@ -8,15 +8,14 @@
 Summary:	Vid.Stab - video stabilization library
 Summary(pl.UTF-8):	Vid.Stab - biblioteka do stabilizacji obrazu
 Name:		vid.stab
-Version:	0.96
+Version:	0.98
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 #Source0Download: http://public.hronopik.de/vid.stab/download.php
 Source0:	https://github.com/georgmartius/vid.stab/tarball/release-%{version}?/%{name}-%{version}.tar.gz
-# Source0-md5:	3dda75371b71e0e695cb1f679691c23c
-Patch0:		%{name}-git.patch
-Patch1:		%{name}-lib64.patch
+# Source0-md5:	809c758324c8a900faedffe81f30fe9e
+Patch0:		%{name}-lib64.patch
 URL:		http://public.hronopik.de/vid.stab/
 BuildRequires:	cmake >= 2.6
 BuildRequires:	rpmbuild(macros) >= 1.605
@@ -41,20 +40,21 @@ Header files for vid.stab library.
 Pliki nagłówkowe biblioteki vid.stab.
 
 %prep
-%setup -q -n georgmartius-%{name}-254ee37
+%setup -q -n georgmartius-%{name}-430b4cf
 %patch0 -p1
-%patch1 -p1
 
 %build
-cd src
-%cmake . \
-	%{!?with_sse:-DSSE2_FOUND=OFF}
+install -d build
+cd build
+%cmake \
+	%{!?with_sse:-DSSE2_FOUND=OFF} \
+	..
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} -C src install \
+%{__make} -C build install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 %clean
