@@ -9,7 +9,7 @@ Summary:	Vid.Stab - video stabilization library
 Summary(pl.UTF-8):	Vid.Stab - biblioteka do stabilizacji obrazu
 Name:		vid.stab
 Version:	0.98b
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Libraries
 #Source0Download: http://public.hronopik.de/vid.stab/download.php
