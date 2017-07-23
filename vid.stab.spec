@@ -1,5 +1,6 @@
 #
 # Conditional build:
+%bcond_without	openmp	# OpenMP parallelization
 %bcond_with	sse2	# use SSE2 instructions
 #
 %ifarch pentium4 %{x8664}
@@ -8,15 +9,16 @@
 Summary:	Vid.Stab - video stabilization library
 Summary(pl.UTF-8):	Vid.Stab - biblioteka do stabilizacji obrazu
 Name:		vid.stab
-Version:	0.98b
-Release:	2
+Version:	1.1.0
+Release:	1
 License:	GPL v2+
 Group:		Libraries
 #Source0Download: http://public.hronopik.de/vid.stab/download.php
-Source0:	https://github.com/georgmartius/vid.stab/tarball/release-%{version}?/%{name}-%{version}.tar.gz
-# Source0-md5:	dbce3c292656de126f02b6a616e8d5e6
+Source0:	https://github.com/georgmartius/vid.stab/archive/v%{version}/%{name}-%{version}.tar.gz
+# Source0-md5:	633af54b7e2fd5734265ac7488ac263a
 URL:		http://public.hronopik.de/vid.stab/
 BuildRequires:	cmake >= 2.6
+%{?with_openmp:BuildRequires:	libgomp-devel}
 BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -39,14 +41,15 @@ Header files for vid.stab library.
 Pliki nagłówkowe biblioteki vid.stab.
 
 %prep
-%setup -q -n georgmartius-%{name}-3b35b4d
+%setup -q
 
 %build
 install -d build
 cd build
-%cmake \
+%cmake .. \
 	%{!?with_sse:-DSSE2_FOUND=OFF} \
-	..
+	%{!?with_openmp:-DUSE_OMP=OFF}
+
 %{__make}
 
 %install
@@ -63,8 +66,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc Changelog LICENSE README Todo
-%attr(755,root,root) %{_libdir}/libvidstab.so.0.9
+%doc Changelog LICENSE README.md Todo
+%attr(755,root,root) %{_libdir}/libvidstab.so.1.1
 
 %files devel
 %defattr(644,root,root,755)
