@@ -33,6 +33,7 @@ Summary:	Header files for vid.stab library
 Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki vid.stab
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
+%{?with_openmp:Requires:	libgomp-devel}
 
 %description devel
 Header files for vid.stab library.
