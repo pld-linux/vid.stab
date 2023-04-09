@@ -9,15 +9,16 @@
 Summary:	Vid.Stab - video stabilization library
 Summary(pl.UTF-8):	Vid.Stab - biblioteka do stabilizacji obrazu
 Name:		vid.stab
-Version:	1.1.0
+Version:	1.1.1
 Release:	1
 License:	GPL v2+
 Group:		Libraries
-#Source0Download: http://public.hronopik.de/vid.stab/download.php
+# also http://public.hronopik.de/vid.stab/download.php
+#Source0Download: https://github.com/georgmartius/vid.stab/tags
 Source0:	https://github.com/georgmartius/vid.stab/archive/v%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	633af54b7e2fd5734265ac7488ac263a
+# Source0-md5:	3fb59a96f6e49e2719fd8c551eb3617a
 URL:		http://public.hronopik.de/vid.stab/
-BuildRequires:	cmake >= 2.6
+BuildRequires:	cmake >= 2.8.5
 %{?with_openmp:BuildRequires:	libgomp-devel}
 BuildRequires:	rpmbuild(macros) >= 1.605
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -68,7 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc Changelog LICENSE README.md Todo
-%attr(755,root,root) %{_libdir}/libvidstab.so.1.1
+%attr(755,root,root) %{_libdir}/libvidstab.so.1.2
 
 %files devel
 %defattr(644,root,root,755)
